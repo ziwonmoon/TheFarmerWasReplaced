@@ -1,8 +1,6 @@
 import plan
 from basic_tools import hvst, tosoil, moveto
 
-NUM_SUNFLOWER = 16
-
 def action_sunflower():
 	num_leaves = [] #잎의 개수 리스트, 정렬 : 라우트와 같음
 	leaves_ordered_route = [] #라우트, 정렬 : 잎 개수 순
@@ -34,11 +32,11 @@ def action_sunflower():
 
 	# 삽입정렬 끝
 
-	for i in range(NUM_SUNFLOWER - 10):
+	for i in range(plan.NUM_SUNFLOWER - 10):
 		moveto(leaves_ordered_route[i][0], leaves_ordered_route[i][1])
 		hvst()
 
-	for i in range(NUM_SUNFLOWER - 10):
+	for i in range(plan.NUM_SUNFLOWER - 10):
 		moveto(leaves_ordered_route[i][0], leaves_ordered_route[i][1])
 		plant(Entities.Sunflower)
 

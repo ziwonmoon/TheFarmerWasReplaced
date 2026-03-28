@@ -1,8 +1,8 @@
 import plan
 from basic_tools import hvst, tosoil, moveto
 
-PUMPKIN_SIZE = 8 * 8
 pumpkin_grown_unit_mem = []
+
 
 #OPTIMIZATIONS (TODO)
 #Remember the fully grown pumpkin units, So
@@ -59,7 +59,7 @@ def _add_pcalc(): #pumpkin counter add
 	pumpkin_grown_unit_mem.append([get_pos_x(), get_pos_y()])
 	
 def can_harvest_pumpkin():
-	if _num_grown_pumpkins >= PUMPKIN_SIZE:
+	if _num_grown_pumpkins >= plan.NUM_PUMPKIN:
 		return True
 	else:
 		return False

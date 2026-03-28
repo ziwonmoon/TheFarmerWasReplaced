@@ -1,16 +1,18 @@
-import pumpkin, carrot, sunflower, tree, grass
+import pumpkin, carrot, sunflower, tree, grass, cactus
 import plan
 from basic_tools import moveto, modify_route
 
 if __name__ == "__main__":
 	clear()
 	change_hat(Hats.Traffic_Cone)
+
 	plan.generate_plan_data()
 
 	modify_route(plan.sunflower_route)
 	modify_route(plan.grass_and_tree_route)
 	modify_route(plan.carrot_route)
 	modify_route(plan.pumpkin_route)
+	modify_route(plan.cactus_route)
 	
 	do_a_flip()
 
@@ -35,5 +37,9 @@ if __name__ == "__main__":
 		## Pumpkin Phase
 		change_hat(Hats.Pumpkin_Hat)
 		pumpkin.action_pumpkin()
-			
+		
+		
+		## Cactus Phase
+		change_hat(Hats.Gray_Hat)
+		cactus.action_cactus()
 	
