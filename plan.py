@@ -15,14 +15,14 @@ NUM_PUMPKIN = 0
 def get_designated_produce(x, y):
 	if x == 1:
 		return Entities.Sunflower
-	elif x == 0 or x == 2:
+	elif x == 0 or x == 2 or x == 3:
 		return Entities.Carrot
 	elif y < 3:
 		if (x % 3 == 0 and y % 2 == 0) or (x % 3 == 1 and y % 2 == 1):
 			return Entities.Tree
 		else:
 			return Entities.Grass
-	elif x >= 5 and y >= 5:
+	elif x >= 6 and y >= 6:
 		return Entities.Pumpkin
 	else:
 		return Entities.Cactus
