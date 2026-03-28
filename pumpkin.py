@@ -11,17 +11,17 @@ pumpkin_grown_unit_mem = []
 
 def action_pumpkin():
 	#"""이거는 셀 하나하나 호출이 아니라, 한번 호출하면 알아서 그 영역을 해결"""
-	temp_pumpkin_map = []
+	temp_pumpkin_route = []
 	global pumpkin_grown_unit_mem
 
-	for pos in plan.pumpkin_map:
-		temp_pumpkin_map.append(pos)
+	for pos in plan.pumpkin_route:
+		temp_pumpkin_route.append(pos)
 
 	for pos in pumpkin_grown_unit_mem:
-		if pos in temp_pumpkin_map:
-			temp_pumpkin_map.remove(pos)
+		if pos in temp_pumpkin_route:
+			temp_pumpkin_route.remove(pos)
 	
-	for pos in temp_pumpkin_map:
+	for pos in temp_pumpkin_route:
 		moveto(pos[0], pos[1])
 		tosoil()
 

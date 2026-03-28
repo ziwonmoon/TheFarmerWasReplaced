@@ -1,4 +1,5 @@
 HALV_SIZE = get_world_size() // 2
+import module_list
 
 def hvst():
 	if can_harvest():
@@ -44,3 +45,33 @@ def moveto(x, y):
 				move(South)
 			else:
 				move(North)
+
+
+def modify_route(route):
+	prev_x = route[0][0]
+	double_listed = []
+	double_listed.append([])
+	i = 0
+
+	
+	for pos in route:
+		if prev_x == pos[0]:
+			double_listed[i].append(pos)
+		else:
+			prev_x = pos[0]
+			i += 1
+			double_listed.append([])
+			double_listed[i].append(pos)
+	
+	for i in range(len(double_listed)):
+		if i % 2 == 1:
+			module_list.flip(double_listed[i])
+	
+
+	for i in range(len(route)):
+		route.pop()
+
+	for li in double_listed:
+		for ji in li:
+			route.append(ji)
+		
