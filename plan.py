@@ -10,16 +10,18 @@ cactus_route = []
 NUM_SUNFLOWER = 0
 NUM_PUMPKIN = 0
 
+
+#RULE : 해바라기와 선인장은 인접해서는 안 된다. (대각선은 허용)
 def get_designated_produce(x, y):
-	if (x < 4 and y < 4):
+	if x == 0:
 		return Entities.Sunflower
-	elif x >= 3 and y < 3:
+	elif 1 <= x < 3:
+		return Entities.Carrot
+	elif y < 3:
 		if (x % 3 == 0 and y % 2 == 0) or (x % 3 == 1 and y % 2 == 1):
 			return Entities.Tree
 		else:
 			return Entities.Grass
-	elif x < 3 and y >= 3:
-		return Entities.Carrot
 	elif x >= 5 and y >= 5:
 		return Entities.Pumpkin
 	else:
