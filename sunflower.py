@@ -16,7 +16,7 @@ def zero_scalc():
 	_num_counted_sunflowers = 0
 
 def action_sunflower():
-	if plan.get_designated_produce() != Entities.Sunflower:
+	if plan.get_designated_produce(get_pos_x(), get_pos_y()) != Entities.Sunflower:
 		return False
 		
 	tosoil()

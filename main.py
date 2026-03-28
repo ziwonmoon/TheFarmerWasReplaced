@@ -1,24 +1,36 @@
 import pumpkin, carrot, sunflower, tree, grass
+import plan
+from basic_tools import moveto
 
 if __name__ == "__main__":
 	clear()
-
-	change_hat(Hats.Tree_Hat)
+	change_hat(Hats.Traffic_Cone)
+	plan.generate_plan_data()
+	
 	do_a_flip()
 
 	while True:
-		pumpkin.zero_pcalc()
+		## Sunflower Phase
+		change_hat(Hats.Purple_Hat)
 		sunflower.zero_scalc()
-		for y in range(get_world_size()):
-			for x in range(get_world_size()):
-				# change to (not execute all the func, excute the func that I want)
-				pumpkin.action_pumpkin()
-				carrot.action_carrot()
-				sunflower.action_sunflower()
-				tree.action_tree()
-				grass.action_grass()
-				move(East)
-			move(North)
-	
-		
-		
+		for pos in plan.sunflower_map:
+			moveto(pos[0], pos[1])
+			sunflower.action_sunflower()
+
+		## Grass and Tree Phase
+		change_hat(Hats.Straw_Hat)
+		for pos in plan.grass_and_tree_map:
+			moveto(pos[0], pos[1])
+			grass.action_grass()
+			tree.action_tree()
+
+		## Carrot Phase
+		change_hat(Hats.Carrot_Hat)
+		for pos in plan.carrot_map:
+			moveto(pos[0], pos[1])
+			carrot.action_carrot()
+
+		## Pumpkin Phase
+		change_hat(Hats.Pumpkin_Hat)
+		pumpkin.action_pumpkin()
+			
