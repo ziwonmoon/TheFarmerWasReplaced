@@ -3,47 +3,45 @@ from basic_tools import hvst, tosoil, moveto
 
 NUM_SUNFLOWER = 16
 
-much_leaves_pos = [-1, -1]
-_num_counted_sunflowers = 0
-num_much_leaves = -1
-
-def _add_num_counted_sunflowers():
-	global _num_counted_sunflowers
-	_num_counted_sunflowers += 1
-
-def zero_scalc():
-	global _num_counted_sunflowers
-	_num_counted_sunflowers = 0
-
 def action_sunflower():
-	if plan.get_designated_produce(get_pos_x(), get_pos_y()) != Entities.Sunflower:
-		return False
-		
-	tosoil()
-	
-		
-	plant(Entities.Sunflower)
-	
-	global num_much_leaves
-	global much_leaves_pos
-	
-	temp_num_leaves = measure()
-	if temp_num_leaves > num_much_leaves:
-		num_much_leaves = temp_num_leaves
-		much_leaves_pos = [get_pos_x(), get_pos_y()]
-	_add_num_counted_sunflowers()
-	
-	global _num_counted_sunflowers
-	if _num_counted_sunflowers >= NUM_SUNFLOWER:
-		current_pos = [get_pos_x(), get_pos_y()]
-		moveto(much_leaves_pos[0], much_leaves_pos[1])
-		hvst()
+	num_leaves = [] #잎의 개수 리스트, 정렬 : 라우트와 같음
+	leaves_ordered_route = [] #라우트, 정렬 : 잎 개수 순
+
+	for pos in plan.sunflower_route:
+		moveto(pos[0], pos[1])
+		tosoil()
 		plant(Entities.Sunflower)
-		moveto(current_pos[0], current_pos[1])
-		_num_counted_sunflowers = 0
-		much_leaves_pos = [-1, -1]
-		num_much_leaves = -1
+		num_leaves.append(measure())
+
+
+	#삽입정렬.. 아 오랫만이라.. 너무.. 머리가..멍청해..
+	temp_leaves = [] #잎의 개수 리스트. 정렬:내림차순
 	
+	temp_leaves.append(num_leaves[0])
+	leaves_ordered_route.append(plan.sunflower_route[0])
+
+	for i in range(len(num_leaves)):
+		inserted = False
+		for j in range(len(temp_leaves)):
+			if num_leaves[i] >= temp_leaves[j]:
+				temp_leaves.insert(j, num_leaves[i])
+				leaves_ordered_route.insert(j, plan.sunflower_route[i])
+				inserted = True
+				break
+		if not inserted:
+			temp_leaves.append(num_leaves[i])
+			leaves_ordered_route.append(plan.sunflower_route[i])
+
+	# 삽입정렬 끝
+
+	for i in range(NUM_SUNFLOWER - 10):
+		moveto(leaves_ordered_route[i][0], leaves_ordered_route[i][1])
+		hvst()
+
+	for i in range(NUM_SUNFLOWER - 10):
+		moveto(leaves_ordered_route[i][0], leaves_ordered_route[i][1])
+		plant(Entities.Sunflower)
+
 	return True
 	
 	

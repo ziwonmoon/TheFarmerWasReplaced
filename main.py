@@ -17,10 +17,7 @@ if __name__ == "__main__":
 	while True:
 		## Sunflower Phase
 		change_hat(Hats.Sunflower_Hat)
-		sunflower.zero_scalc()
-		for pos in plan.sunflower_route:
-			moveto(pos[0], pos[1])
-			sunflower.action_sunflower()
+		sunflower.action_sunflower()
 
 		## Grass and Tree Phase
 		change_hat(Hats.Straw_Hat)
