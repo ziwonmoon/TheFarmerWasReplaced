@@ -2,7 +2,6 @@ import plan
 from basic_tools import moveto, tosoil, hvst
 
 def action_cactus():
-	again = True
 	for temp_pos in plan.cactus_route:
 		bubble = False
 		for pos in plan.cactus_route:

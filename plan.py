@@ -13,9 +13,9 @@ NUM_PUMPKIN = 0
 
 #RULE : 해바라기와 선인장은 인접해서는 안 된다. (대각선은 허용)
 def get_designated_produce(x, y):
-	if x == 0:
+	if x == 1:
 		return Entities.Sunflower
-	elif 1 <= x < 3:
+	elif x == 0 or x == 2:
 		return Entities.Carrot
 	elif y < 3:
 		if (x % 3 == 0 and y % 2 == 0) or (x % 3 == 1 and y % 2 == 1):
