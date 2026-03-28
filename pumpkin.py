@@ -10,29 +10,33 @@ pumpkin_grown_unit_mem = []
 
 
 def action_pumpkin():
-	#"""이거는 셀 하나하나 호출이 아니라, 한번 호출하면 알아서 그 영역을 해결"""
-	temp_pumpkin_route = []
-	global pumpkin_grown_unit_mem
+	again = True
+	while again:
+		again = False
+		#"""이거는 셀 하나하나 호출이 아니라, 한번 호출하면 알아서 그 영역을 해결"""
+		temp_pumpkin_route = []
+		global pumpkin_grown_unit_mem
 
-	for pos in plan.pumpkin_route:
-		temp_pumpkin_route.append(pos)
+		for pos in plan.pumpkin_route:
+			temp_pumpkin_route.append(pos)
 
-	for pos in pumpkin_grown_unit_mem:
-		if pos in temp_pumpkin_route:
-			temp_pumpkin_route.remove(pos)
-	
-	for pos in temp_pumpkin_route:
-		moveto(pos[0], pos[1])
-		tosoil()
+		for pos in pumpkin_grown_unit_mem:
+			if pos in temp_pumpkin_route:
+				temp_pumpkin_route.remove(pos)
+		
+		for pos in temp_pumpkin_route:
+			moveto(pos[0], pos[1])
+			tosoil()
 
-		if can_harvest() and (pos not in pumpkin_grown_unit_mem):
-			_add_pcalc()
-		else:
-			plant(Entities.Pumpkin)
-	
-	if can_harvest_pumpkin():
-		hvst()
-		zero_pcalc()
+			if can_harvest() and (pos not in pumpkin_grown_unit_mem):
+				_add_pcalc()
+			else:
+				plant(Entities.Pumpkin)
+		
+		if can_harvest_pumpkin():
+			hvst()
+			zero_pcalc()
+			again = True
 	
 	return True
 
