@@ -1,6 +1,22 @@
 HALV_SIZE = get_world_size() // 2
 import module_list
 
+def action_wildcard(entity):
+	if entity == Entities.Carrot:
+		import carrot
+		carrot.action_carrot()
+	elif entity == Entities.Tree:
+		import tree
+		tree.action_tree()
+	elif entity == Entities.Grass:
+		import grass
+		grass.action_grass()
+	elif entity == Entities.Bush:
+		import bush
+		bush.action_bush()
+	else:
+		print(-1)
+
 def hvst():
 	if can_harvest():
 		harvest()
@@ -11,7 +27,7 @@ def tosoil():
 
 def togrsld():
 	if get_ground_type() != Grounds.Grassland:
-		togrsld()
+		till()
 		
 def moveto(x, y):
 	while True:

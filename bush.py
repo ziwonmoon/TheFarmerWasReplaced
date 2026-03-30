@@ -1,7 +1,7 @@
 import plan
 from basic_tools import hvst, togrsld
 
-def action_grass():
+def action_bush():
 	togrsld()
 	hvst()
-	plant(Entities.Grass)
+	plant(Entities.Bush)

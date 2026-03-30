@@ -17,7 +17,7 @@ def get_designated_produce(x, y):
 		return Entities.Sunflower
 	elif x == 0 or x == 2 or x == 3:
 		return Entities.Carrot
-	elif y < 3:
+	elif y < 4:
 		if (x % 3 == 0 and y % 2 == 0) or (x % 3 == 1 and y % 2 == 1):
 			return Entities.Tree
 		else:

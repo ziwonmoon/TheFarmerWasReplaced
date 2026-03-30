@@ -1,9 +1,9 @@
 import plan
-from basic_tools import hvst
+from basic_tools import hvst, togrsld
 
 def action_tree():
-	if plan.get_designated_produce(get_pos_x(), get_pos_y()) != Entities.Tree:
-		return False
+
+	togrsld()
 		
 	hvst()
 	plant(Entities.Tree)

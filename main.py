@@ -1,6 +1,6 @@
 import pumpkin, carrot, sunflower, tree, grass, cactus
 import plan
-from basic_tools import moveto, modify_route
+from basic_tools import moveto, modify_route, action_wildcard
 
 if __name__ == "__main__":
 	clear()
@@ -25,8 +25,7 @@ if __name__ == "__main__":
 		change_hat(Hats.Straw_Hat)
 		for pos in plan.grass_and_tree_route:
 			moveto(pos[0], pos[1])
-			grass.action_grass()
-			tree.action_tree()
+			action_wildcard(plan.get_designated_produce(get_pos_x(),get_pos_y()))
 
 		## Carrot Phase
 		change_hat(Hats.Carrot_Hat)
@@ -42,4 +41,6 @@ if __name__ == "__main__":
 		## Cactus Phase
 		change_hat(Hats.Gray_Hat)
 		cactus.action_cactus()
+
+		
 	
